@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quân tìm hiểu hay - Physics AI Expert</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        dark: {
+                            900: '#0a0d14',
+                            800: '#121722',
+                            700: '#1c2438',
+                            600: '#283554',
+                        },
+                        quantum: {
+                            cyan: '#00f2fe',
+                            blue: '#4facfe',
+                            purple: '#a18cd1',
+                            pink: '#fbc2eb',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0d14;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .glow-cyan {
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.2);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #a18cd1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0d14;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283554;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4facfe;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-grid min-h-screen flex flex-col font-sans relative">
+
+    <!-- Background Ambient Glows -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none animate-pulse-glow" style="animation-delay: 2s;"></div>
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-white/10 bg-dark-900/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-cyan-400 to-blue-500 flex items-center justify-center glow-cyan">
+                    <i class="fa-solid fa-atom text-dark-900 text-xl animate-spin" style="animation-duration: 12s;"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-gradient">Quân tìm hiểu hay</span>
+                    <span class="block text-xs font-mono text-cyan-400/80 tracking-widest uppercase">Physics AI Expert</span>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+                <a href="#chat" class="hover:text-cyan-400 transition flex items-center gap-2"><i class="fa-solid fa-comments"></i> Trợ lý AI</a>
+                <a href="#formulas" class="hover:text-cyan-400 transition flex items-center gap-2"><i class="fa-solid fa-square-root-variable"></i> Công thức</a>
+                <a href="#calculator" class="hover:text-cyan-400 transition flex items-center gap-2"><i class="fa-solid fa-calculator"></i> Máy tính nhanh</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-ping"></span> Hệ thống sẵn sàng
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        <!-- Sidebar: Tools & Quick Formulas -->
+        <div class="lg:col-span-1 space-y-6">
+            <!-- AI Profile Card -->
+            <div class="bg-dark-800/80 border border-white/10 rounded-2xl p-5 backdrop-blur-sm relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl"></div>
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="relative">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 p-0.5">
+                            <div class="w-full h-full bg-dark-900 rounded-[14px] flex items-center justify-center">
+                                <i class="fa-solid fa-robot text-cyan-400 text-2xl"></i>
+                            </div>
+                        </div>
+                        <span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-500 border-2 border-dark-900 rounded-full"></span>
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-base text-white">Quân AI v2.5</h2>
+                        <p class="text-xs text-slate-400">Trợ lý chuyên gia Vật Lý</p>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                    Tích hợp kiến thức từ cơ học cổ điển đến vật lý lượng tử và tương đối hẹp. Giải thích nhanh, trực quan và chính xác.
+                </p>
+                <div class="space-y-2">
+                    <label class="text-xs font-mono text-cyan-400 block">Phong cách trả lời:</label>
+                    <select id="ai-persona" class="w-full bg-dark-900 border border-white/10 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-cyan-400 transition">
+                        <option value="detailed">Chi tiết & Dễ hiểu (Phổ thông)</option>
+                        <option value="academic">Học thuật & Chuyên sâu</option>
+                        <option value="short">Ngắn gọn & Trọng tâm</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Quick Formulas Box -->
+            <div id="formulas" class="bg-dark-800/80 border border-white/10 rounded-2xl p-5 backdrop-blur-sm">
+                <h3 class="font-bold text-sm text-white mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-bolt text-cyan-400"></i> Công thức nhanh
+                </h3>
+                <div class="space-y-2 text-xs font-mono">
+                    <button onclick="insertFormula('Định luật II Newton: F = m * a')" class="w-full text-left bg-dark-900/60 hover:bg-dark-700/80 p-2.5 rounded-xl border border-white/5 transition flex justify-between items-center group">
+                        <span class="text-cyan-300">Định luật II Newton</span>
+                        <span class="text-slate-400 group-hover:text-white">F = ma</span>
+                    </button>
+                    <button onclick="insertFormula('Động năng: W_đ = 1/2 * m * v^2')" class="w-full text-left bg-dark-900/60 hover:bg-dark-700/80 p-2.5 rounded-xl border border-white/5 transition flex justify-between items-center group">
+                        <span class="text-cyan-300">Động năng</span>
+                        <span class="text-slate-400 group-hover:text-white">W_đ = ½mv²</span>
+                    </button>
+                    <button onclick="insertFormula('Định luật Ohm: I = U / R')" class="w-full text-left bg-dark-900/60 hover:bg-dark-700/80 p-2.5 rounded-xl border border-white/5 transition flex justify-between items-center group">
+                        <span class="text-cyan-300">Định luật Ohm</span>
+                        <span class="text-slate-400 group-hover:text-white">I = U/R</span>
+                    </button>
+                    <button onclick="insertFormula('Thuyết tương đối: E = m * c^2')" class="w-full text-left bg-dark-900/60 hover:bg-dark-700/80 p-2.5 rounded-xl border border-white/5 transition flex justify-between items-center group">
+                        <span class="text-cyan-300">Năng lượng nghỉ</span>
+                        <span class="text-slate-400 group-hover:text-white">E = mc²</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mini Calculator -->
+            <div id="calculator" class="bg-dark-800/80 border border-white/10 rounded-2xl p-5 backdrop-blur-sm">
+                <h3 class="font-bold text-sm text-white mb-3 flex items-center gap-2">
+                    <i class="fa-solid fa-calculator text-cyan-400"></i> Tính vận tốc chạm đất
+                </h3>
+                <div class="space-y-3 text-xs">
+                    <div>
+                        <label class="text-slate-400 block mb-1">Độ cao h (mét):</label>
+                        <input type="number" id="calc-h" value="20" class="w-full bg-dark-900 border border-white/10 rounded-xl px-3 py-2 text-white font-mono focus:outline-none focus:border-cyan-400">
+                    </div>
+                    <button onclick="calculateVelocity()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-dark-900 font-bold py-2.5 rounded-xl hover:opacity-95 transition shadow-lg shadow-cyan-500/20">
+                        Tính toán ngay
+                    </button>
+                    <div id="calc-result" class="p-2.5 rounded-xl bg-dark-900 border border-white/5 font-mono text-cyan-300 text-center hidden">
+                        Kết quả: v = 19.8 m/s
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div id="chat" class="lg:col-span-3 flex flex-col bg-dark-800/80 border border-white/10 rounded-2xl backdrop-blur-sm overflow-hidden h-[750px]">
+            <!-- Chat Header -->
+            <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-dark-900/50">
+                <div class="flex items-center space-x-3">
+                    <div class="w-3 h-3 rounded-full bg-cyan-400 animate-ping"></div>
+                    <div>
+                        <h2 class="font-bold text-sm text-white">Không gian tư vấn Vật lý trực tuyến</h2>
+                        <p class="text-xs text-slate-400">Hỏi đáp mọi thắc mắc về cơ, nhiệt, điện, quang và lượng tử</p>
+                    </div>
+                </div>
+                <button onclick="clearChat()" class="text-xs text-slate-400 hover:text-cyan-400 transition flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-dark-900 border border-white/5">
+                    <i class="fa-solid fa-trash-can"></i> Xóa đoạn chat
+                </button>
+            </div>
+
+            <!-- Chat Messages Container -->
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-6">
+                <!-- Welcome Message from AI -->
+                <div class="flex items-start space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-400 to-blue-500 flex items-center justify-center shrink-0 glow-cyan">
+                        <i class="fa-solid fa-robot text-dark-900 text-sm"></i>
+                    </div>
+                    <div class="bg-dark-900/90 border border-white/10 rounded-2xl rounded-tl-none p-4 max-w-[85%] text-sm text-slate-200 leading-relaxed shadow-lg">
+                        <p class="font-semibold text-cyan-400 mb-1">Chào mừng bạn đến với Quân tìm hiểu hay!</p>
+                        <p>Tôi là trợ lý AI chuyên gia Vật Lý của bạn. Bạn muốn giải bài tập, tìm hiểu về công thức hay khám phá các định luật vật lý nào hôm nay?</p>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <button onclick="sendQuickPrompt('Giải thích định luật vạn vật hấp dẫn của Newton?')" class="text-xs bg-dark-800 hover:bg-dark-700 text-cyan-300 px-3 py-1.5 rounded-xl border border-cyan-500/20 transition">
+                                🌌 Định luật vạn vật hấp dẫn?
+                            </button>
+                            <button onclick="sendQuickPrompt('Tại sao bầu trời lại có màu xanh?')" class="text-xs bg-dark-800 hover:bg-dark-700 text-cyan-300 px-3 py-1.5 rounded-xl border border-cyan-500/20 transition">
+                                ☀️ Tại sao bầu trời màu xanh?
+                            </button>
+                            <button onclick="sendQuickPrompt('Phân biệt hiện tượng quang điện trong và ngoài?')" class="text-xs bg-dark-800 hover:bg-dark-700 text-cyan-300 px-3 py-1.5 rounded-xl border border-cyan-500/20 transition">
+                                ⚡ Hiện tượng quang điện?
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typing Indicator (Hidden by default) -->
+            <div id="typing-indicator" class="px-6 py-2 hidden">
+                <div class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-400 to-blue-500 flex items-center justify-center shrink-0 opacity-50">
+                        <i class="fa-solid fa-robot text-dark-900 text-sm"></i>
+                    </div>
+                    <div class="bg-dark-900/50 border border-white/5 rounded-2xl px-4 py-3 text-xs text-slate-400 flex items-center space-x-2">
+                        <span>Quân đang phân tích và tính toán</span>
+                        <div class="flex space-x-1">
+                            <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce"></div>
+                            <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
+                            <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce" style="animation-delay: 0.4s;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input Form -->
+            <div class="p-4 border-t border-white/10 bg-dark-900/60">
+                <form id="chat-form" onsubmit="handleChatSubmit(event)" class="flex items-center gap-3">
+                    <div class="relative flex-1">
+                        <input type="text" id="user-input" placeholder="Nhập câu hỏi vật lý của bạn (VD: Tính lực đẩy Archimedes khi...)" 
+                            class="w-full bg-dark-800 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition pr-10">
+                        <div class="absolute right-3 top-3.5 text-slate-500 text-xs font-mono">
+                            <i class="fa-solid fa-keyboard"></i>
+                        </div>
+                    </div>
+                    <button type="submit" id="send-btn" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:opacity-95 text-dark-900 font-bold px-6 py-3.5 rounded-xl transition flex items-center justify-center shadow-lg shadow-cyan-500/20 shrink-0">
+                        <i class="fa-solid fa-paper-plane text-dark-900"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-dark-900 py-6 mt-12 text-center text-xs text-slate-500">
+        <p>&copy; 2026 Quân tìm hiểu hay. Không gian khám phá khoa học và vật lý trực tuyến.</p>
+    </footer>
+
+    <!-- JavaScript Simulation Logic -->
+    <script>
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const typingIndicator = document.getElementById('typing-indicator');
+
+        function insertFormula(formulaText) {
+            userInput.value = "Hãy giải thích và cho ví dụ về công thức: " + formulaText;
+            userInput.focus();
+        }
+
+        function calculateVelocity() {
+            const h = parseFloat(document.getElementById('calc-h').value) || 0;
+            const g = 9.8;
+            const v = Math.sqrt(2 * g * h);
+            const resultDiv = document.getElementById('calc-result');
+            resultDiv.classList.remove('hidden');
+            resultDiv.innerHTML = `Kết quả: v = &radic;(2 * ${g} * ${h}) = <strong>${v.toFixed(2)} m/s</strong>`;
+        }
+
+        function clearChat() {
+            chatMessages.innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-400 to-blue-500 flex items-center justify-center shrink-0 glow-cyan">
+                        <i class="fa-solid fa-robot text-dark-900 text-sm"></i>
+                    </div>
+                    <div class="bg-dark-900/90 border border-white/10 rounded-2xl rounded-tl-none p-4 max-w-[85%] text-sm text-slate-200 leading-relaxed shadow-lg">
+                        <p class="font-semibold text-cyan-400 mb-1">Đã làm mới đoạn chat.</p>
+                        <p>Bạn cần giải đáp thắc mắc gì tiếp theo về vật lý?</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function sendQuickPrompt(promptText) {
+            userInput.value = promptText;
+            handleChatSubmit(new Event('submit'));
+        }
+
+        async function handleChatSubmit(e) {
+            e.preventDefault();
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            // Append User Message
+            const userMsgHTML = `
+                <div class="flex items-start justify-end space-x-3">
+                    <div class="bg-gradient-to-r from-cyan-500 to-blue-600 text-dark-900 font-medium rounded-2xl rounded-tr-none p-4 max-w-[85%] text-sm shadow-lg leading-relaxed">
+                        ${escapeHTML(text)}
+                    </div>
+                    <div class="w-9 h-9 rounded-xl bg-dark-700 flex items-center justify-center shrink-0 border border-white/10">
+                        <i class="fa-solid fa-user text-cyan-400 text-sm"></i>
+                    </div>
+                </div>
+            `;
+            chatMessages.insertAdjacentHTML('beforeend', userMsgHTML);
+            userInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Show typing indicator
+            typingIndicator.classList.remove('hidden');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Simulate AI Physics Expert response
+            setTimeout(() => {
+                typingIndicator.classList.add('hidden');
+                const aiReply = generatePhysicsResponse(text);
+                const aiMsgHTML = `
+                    <div class="flex items-start space-x-3">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-400 to-blue-500 flex items-center justify-center shrink-0 glow-cyan">
+                            <i class="fa-solid fa-robot text-dark-900 text-sm"></i>
+                        </div>
+                        <div class="bg-dark-900/90 border border-white/10 rounded-2xl rounded-tl-none p-4 max-w-[85%] text-sm text-slate-200 leading-relaxed shadow-lg space-y-2">
+                            ${aiReply}
+                        </div>
+                    </div>
+                `;
+                chatMessages.insertAdjacentHTML('beforeend', aiMsgHTML);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1200);
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        function generatePhysicsResponse(query) {
+            const q = query.toLowerCase();
+            const persona = document.getElementById('ai-persona').value;
+
+            let responseText = "";
+
+            if (q.includes('hấp dẫn') || q.includes('newton')) {
+                responseText = `
+                    <p class="font-semibold text-cyan-400">Định luật vạn vật hấp dẫn (Newton):</p>
+                    <p>Mọi vật trong vũ trụ đều hút nhau với một lực tỉ lệ thuận với tích khối lượng của chúng và tỉ lệ nghịch với bình phương khoảng cách giữa chúng.</p>
+                    <p class="font-mono text-xs bg-dark-800 p-2 rounded-lg border border-white/5 text-cyan-300">Công thức: F = G * (m₁ * m₂) / r²</p>
+                    <p>Trong đó: <strong>G</strong> là hằng số hấp dẫn (~6.674 × 10⁻¹¹ N·m²/kg²).</p>
+                `;
+            } else if (q.includes('bầu trời') || q.includes('màu xanh')) {
+                responseText = `
+                    <p class="font-semibold text-cyan-400">Hiện tượng tán xạ Rayleigh:</p>
+                    <p>Ánh sáng mặt trời chứa tất cả các màu sắc của cầu vồng. Khi ánh sáng truyền qua bầu khí quyển Trái Đất, các bước sóng ngắn (như màu xanh dương và tím) bị các phân tử khí tán xạ mạnh hơn nhiều so với các bước sóng dài (như màu đỏ và vàng).</p>
+                    <p>Mắt chúng ta nhạy cảm hơn với màu xanh dương, cộng thêm ánh sáng tím bị hấp thụ bớt ở tầng cao, nên ta nhìn thấy bầu trời có màu xanh!</p>
+                `;
+            } else if (q.includes('quang điện')) {
+                responseText = `
+                    <p class="font-semibold text-cyan-400">Phân biệt hiện tượng quang điện:</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li><strong>Quang điện ngoài:</strong> Là hiện tượng electron bị bật ra khỏi bề mặt kim loại khi chiếu ánh sáng có bước sóng thích hợp vào kim loại đó.</li>
+                        <li><strong>Quang điện trong:</strong> Là hiện tượng giải phóng các electron liên kết để chúng trở thành electron dẫn, tạo ra độ dẫn điện khi chiếu ánh sáng thích hợp vào chất bán dẫn.</li>
+                    </ul>
+                `;
+            } else {
+                responseText = `
+                    <p class="font-semibold text-cyan-400">Phân tích từ Quân tìm hiểu hay:</p>
+                    <p>Câu hỏi của bạn về <em>"${escapeHTML(query)}"</em> rất thú vị. Về mặt nguyên lý vật lý, hiện tượng này tuân theo các định luật bảo toàn năng lượng và động lượng.</p>
+                    ${persona === 'academic' ? '<p class="font-mono text-xs text-slate-400">[Chế độ học thuật]: Xét theo hệ quy chiếu quán tính, ta áp dụng phương trình vi phân mô tả trường tương tác...</p>' : ''}
+                    <p>Nếu bạn cần tính toán cụ thể các đại lượng như vận tốc, gia tốc, điện tích hay cường độ dòng điện, hãy cung cấp số liệu cụ thể để tôi lập phương trình giải giúp bạn nhé!</p>
+                `;
+            }
+            return responseText;
+        }
+    </script>
+</body>
+</html>
