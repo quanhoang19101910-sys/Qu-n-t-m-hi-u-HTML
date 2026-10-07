@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THPT Cam Lộ - Quảng Trị</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root { --primary: #004d99; --secondary: #ffcc00; --dark: #333; --light: #f8f9fa; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--light); color: var(--dark); line-height: 1.5; }
+        
+        header { background: #fff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: fixed; width: 100%; top: 0; z-index: 100; }
+        .logo { font-weight: 700; color: var(--primary); font-size: 1.1rem; text-decoration: none; }
+        nav a { margin-left: 15px; text-decoration: none; color: var(--dark); font-size: 0.85rem; font-weight: 600; }
+
+        .hero { height: 60vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80') center/cover; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff; padding: 0 20px; margin-top: 50px; }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .hero p { font-size: 0.95rem; max-width: 500px; margin-bottom: 15px; opacity: 0.9; }
+        .btn { background: var(--secondary); color: var(--dark); padding: 8px 20px; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 0.85rem; }
+
+        .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
+        .section-title { font-size: 1.5rem; color: var(--primary); text-align: center; margin-bottom: 20px; }
+        
+        .box { background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.04); margin-bottom: 25px; }
+        .box p { font-size: 0.9rem; color: #555; text-align: justify; margin-bottom: 10px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        .card { background: #fff; padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+        .card i { font-size: 1.8rem; color: var(--primary); margin-bottom: 10px; }
+        .card h3 { font-size: 1rem; margin-bottom: 5px; }
+        .card p { font-size: 0.8rem; color: #666; }
+
+        .contact-list { list-style: none; }
+        .contact-list li { margin-bottom: 10px; font-size: 0.85rem; display: flex; gap: 10px; align-items: center; }
+        .contact-list i { color: var(--primary); }
+
+        footer { text-align: center; padding: 15px; background: var(--dark); color: #fff; font-size: 0.8rem; }
+        @media(max-width: 768px) { nav { display: none; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo"><i class="fa-solid fa-graduation-cap"></i> THPT Cam Lộ</a>
+        <nav>
+            <a href="#about">Giới thiệu</a>
+            <a href="#highlights">Điểm nhấn</a>
+            <a href="#contact">Liên hệ</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Trường THPT Cam Lộ</h1>
+        <p>Môi trường giáo dục uy tín và đáng tự hào tại mảnh đất Cam Lộ, Quảng Trị.</p>
+        <a href="#about" class="btn">Khám phá</a>
+    </section>
+
+    <div class="container">
+        
+        <div id="about" class="box">
+            <h2 class="section-title">Về Nhà Trường</h2>
+            <p>Được thành lập từ năm 1992, Trường THPT Cam Lộ đã vượt qua nhiều khó khăn, khẳng định vị thế là điểm sáng của ngành giáo dục tỉnh Quảng Trị. Nhà trường luôn chú trọng nâng cao chất lượng dạy học và rèn luyện đạo đức học sinh.</p>
+        </div>
+
+        <div id="highlights">
+            <h2 class="section-title">Điểm Nhấn Nổi Bật</h2>
+            <div class="grid">
+                <div class="card">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <h3>30+ Năm Phát Triển</h3>
+                    <p>Bề dày truyền thống hiếu học.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <h3>Đội Ngũ Tận Tâm</h3>
+                    <p>Giáo viên giỏi chuyên môn, yêu nghề.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-award"></i>
+                    <h3>Chất Lượng Cao</h3>
+                    <p>Top đầu các trường THPT tỉnh.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact" class="box" style="margin-top: 25px;">
+            <h2 class="section-title">Thông Tin Liên Hệ</h2>
+            <ul class="contact-list">
+                <li><i class="fa-solid fa-location-dot"></i> <span><strong>Địa chỉ:</strong> Thị trấn Cam Lộ, Huyện Cam Lộ, Tỉnh Quảng Trị.</span></li>
+                <li><i class="fa-solid fa-envelope"></i> <span><strong>Email:</strong> c3camlo@quangtri.edu.vn</span></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Trường THPT Cam Lộ - Quảng Trị</p>
+    </footer>
+
+</body>
+</html>
